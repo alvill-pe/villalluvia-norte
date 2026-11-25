@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>VillaLluvia Norte</title>
+  <meta name="description" content="¿Va a llover? Pronóstico de lluvia hora por hora para Piura y Tumbes, por Villalta.">
+  <meta name="theme-color" content="#2D6CB5">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="iconos/icono-192.png">
+  <link rel="apple-touch-icon" href="iconos/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="VillaLluvia">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="cielo-sol">
+  <main id="app">
+    <header class="cabecera">
+      <button id="btn-lugar" class="lugar" aria-label="Cambiar de lugar">
+        <span id="lugar-nombre">Cargando…</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+      </button>
+      <div id="temp-actual" class="temp-grande">--°</div>
+      <div id="cielo-actual" class="cielo-texto"></div>
+      <div id="max-min" class="max-min"></div>
+    </header>
+
+    <div id="sin-internet" class="tarjeta aviso-offline" hidden></div>
+
+    <section id="tarjeta-lluvia" class="tarjeta principal" aria-live="polite">
+      <div id="icono-principal"></div>
+      <div>
+        <p id="frase-titulo" class="frase-titulo">Buscando el pronóstico…</p>
+        <p id="frase-detalle" class="frase-detalle"></p>
+        <p id="frase-manana" class="frase-manana"></p>
+      </div>
+    </section>
+
+    <div class="botones">
+      <button id="btn-escuchar" class="boton"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg> Escuchar</button>
+      <button id="btn-avisos" class="boton"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0-6 6v4l-2 3h16l-2-3V9a6 6 0 0 0-6-6zM10 19a2 2 0 0 0 4 0" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg> <span id="txt-avisos">Activar avisos</span></button>
+    </div>
+
+    <section id="avisos-senamhi"></section>
+
+    <section class="tarjeta">
+      <h2 class="titulo-tarjeta">Próximas horas</h2>
+      <div id="horas" class="horas" tabindex="0" aria-label="Pronóstico hora por hora"></div>
+    </section>
+
+    <section class="tarjeta">
+      <h2 class="titulo-tarjeta">Próximos días</h2>
+      <div id="dias"></div>
+    </section>
+
+    <section class="tarjeta" id="tarjeta-reporte">
+      <h2 class="titulo-tarjeta">¿Qué ves ahora por tu ventana?</h2>
+      <div class="botones">
+        <button class="boton boton-reporte" data-llueve="1">
+          <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true"><path d="M17 44h31a10.5 10.5 0 0 0 1.2-20.9A15 15 0 0 0 20.6 19 12.5 12.5 0 0 0 17 44z" fill="#fff"/><g stroke="#5AC8FA" stroke-width="4" stroke-linecap="round"><line x1="22" y1="50" x2="19" y2="58"/><line x1="32" y1="50" x2="29" y2="58"/><line x1="42" y1="50" x2="39" y2="58"/></g></svg>
+          Está lloviendo
+        </button>
+        <button class="boton boton-reporte" data-llueve="0">
+          <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="12" fill="#FFC93C"/><g stroke="#FFC93C" stroke-width="4" stroke-linecap="round"><line x1="32" y1="8" x2="32" y2="14"/><line x1="32" y1="50" x2="32" y2="56"/><line x1="8" y1="32" x2="14" y2="32"/><line x1="50" y1="32" x2="56" y2="32"/></g></svg>
+          No llueve
+        </button>
+      </div>
+      <p id="reporte-gracias" class="nota" hidden></p>
+      <details class="explica">
+        <summary>¿Por qué es importante tu reporte?</summary>
+        <p>VillaLluvia compara lo que pronosticó con lo que de verdad pasó. Cada reporte le enseña qué tan bien acertó <strong>en tu zona</strong>, y cada mañana la app se corrige sola con lo aprendido.</p>
+        <p>Los aeropuertos solo miden la lluvia en Piura, Talara y Tumbes. En Tambogrande, Lancones, Las Lomas o la sierra, los únicos ojos son los de ustedes. <strong>Mientras más reportes, más exacta será la app para tu familia.</strong></p>
+        <p id="estadisticas" class="nota"></p>
+      </details>
+    </section>
+
+    <section id="instalar" class="tarjeta" hidden></section>
+
+    <footer class="pie">
+      <p id="actualizado"></p>
+      <p>Pronóstico: ECMWF, GFS e ICON vía <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (CC BY 4.0), corregido con lo observado. Avisos: <a href="https://www.senamhi.gob.pe/?p=aviso-meteorologico" target="_blank" rel="noopener">SENAMHI</a>.</p>
+      <p>Ningún pronóstico es perfecto. Ante un peligro, sigue siempre a SENAMHI, INDECI y tu municipalidad.</p>
+      <p class="marca">VillaLluvia Norte · por Villalta</p>
+    </footer>
+  </main>
+
+  <div id="hoja-lugares" class="fondo-hoja" hidden>
+    <div class="hoja" role="dialog" aria-modal="true" aria-labelledby="titulo-lugares">
+      <div class="hoja-cabecera">
+        <h2 id="titulo-lugares">Elige un lugar</h2>
+        <button id="btn-cerrar-hoja" class="boton-x" aria-label="Cerrar">✕</button>
+      </div>
+      <button id="btn-gps" class="boton boton-ancho">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z" fill="currentColor"/><circle cx="12" cy="9" r="2.6" fill="#2D6CB5"/></svg>
+        Usar dónde estoy ahora
+      </button>
+      <p class="subtitulo">Mis lugares</p>
+      <ul id="mis-lugares" class="lista"></ul>
+      <p class="subtitulo">Agregar un lugar</p>
+      <input id="buscar" type="search" placeholder="Escribe: Tambogrande, Ayabaca, Zorritos…" autocomplete="off">
+      <ul id="resultados" class="lista"></ul>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

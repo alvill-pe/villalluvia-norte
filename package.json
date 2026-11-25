@@ -1,0 +1,18 @@
+{
+  "name": "villalluvia-norte",
+  "private": true,
+  "type": "module",
+  "description": "VillaLluvia Norte: pronóstico de lluvia para Piura y Tumbes, por Villalta.",
+  "scripts": {
+    "entrenar": "node motor/entrenar.mjs",
+    "notificar": "node motor/notificar.mjs",
+    "aprender": "node motor/aprender.mjs",
+    "simular": "node motor/notificar.mjs --simular"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "web-push": "^3.6.7"
+  }
+}

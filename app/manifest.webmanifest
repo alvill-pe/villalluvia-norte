@@ -1,0 +1,17 @@
+{
+  "name": "VillaLluvia Norte",
+  "short_name": "VillaLluvia",
+  "description": "¿Va a llover? Pronóstico de lluvia hora por hora para Piura y Tumbes. Por Villalta.",
+  "lang": "es-PE",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#2D6CB5",
+  "theme_color": "#2D6CB5",
+  "icons": [
+    { "src": "iconos/icono-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "iconos/icono-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "iconos/icono-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

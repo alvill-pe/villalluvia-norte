@@ -1,0 +1,32 @@
+# Cada madrugada (4:30 a. m. de Perú): aprende de los reportes de la familia y de los aeropuertos.
+name: Aprender de lo que pasó
+on:
+  schedule:
+    - cron: "30 9 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  aprender:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: node motor/aprender.mjs
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET: ${{ secrets.SUPABASE_SECRET }}
+      # Guarda una constancia diaria. Además mantiene activo el proyecto: GitHub apaga las
+      # tareas programadas de los proyectos sin movimiento por 60 días.
+      - name: Guardar constancia
+        run: |
+          git config user.name "VillaLluvia (automático)"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add motor/datos/estado.json
+          git diff --cached --quiet || git commit -m "Corrección diaria del pronóstico"
+          git push

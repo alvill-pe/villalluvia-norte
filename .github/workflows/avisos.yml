@@ -1,0 +1,27 @@
+# Cada 10 minutos: avisa 1 hora antes de la lluvia, el resumen de las 6 a. m. y avisos del SENAMHI.
+name: Avisos de lluvia
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+concurrency:
+  group: avisos
+  cancel-in-progress: false
+jobs:
+  avisar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: node motor/notificar.mjs
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET: ${{ secrets.SUPABASE_SECRET }}
+          VAPID_PUBLICA: ${{ secrets.VAPID_PUBLICA }}
+          VAPID_PRIVADA: ${{ secrets.VAPID_PRIVADA }}
+          URL_APP: ${{ vars.URL_APP }}

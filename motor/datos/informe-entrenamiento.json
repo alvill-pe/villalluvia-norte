@@ -1,0 +1,142 @@
+{
+  "desde": "2024-01-01",
+  "hasta": "2026-11-23",
+  "ejemplos": 327723,
+  "prueba_2026": {
+    "1_dia": {
+      "horas_con_lluvia": 1694,
+      "horas": 34558,
+      "aprendido": {
+        "error": 0.03810460154864334,
+        "acierto": 1317,
+        "seEscapa": 377,
+        "falsa": 5650,
+        "deteccion": 0.7774498229043684,
+        "precision": 0.18903401751112386
+      },
+      "promedio": {
+        "error": 0.1223193214627884,
+        "acierto": 1292,
+        "seEscapa": 402,
+        "falsa": 5260,
+        "deteccion": 0.7626918536009445,
+        "precision": 0.19719169719169719
+      },
+      "europeo": {
+        "error": 0.26433821401701485,
+        "acierto": 1441,
+        "seEscapa": 253,
+        "falsa": 8882,
+        "deteccion": 0.8506493506493507,
+        "precision": 0.13959120410733314
+      }
+    },
+    "2_dia": {
+      "horas_con_lluvia": 1694,
+      "horas": 34558,
+      "aprendido": {
+        "error": 0.038874176014939164,
+        "acierto": 1293,
+        "seEscapa": 401,
+        "falsa": 5849,
+        "deteccion": 0.7632821723730815,
+        "precision": 0.18104172500700083
+      },
+      "promedio": {
+        "error": 0.12744436084906893,
+        "acierto": 1248,
+        "seEscapa": 446,
+        "falsa": 5522,
+        "deteccion": 0.7367178276269185,
+        "precision": 0.1843426883308715
+      },
+      "europeo": {
+        "error": 0.2691127958793912,
+        "acierto": 1406,
+        "seEscapa": 288,
+        "falsa": 9012,
+        "deteccion": 0.8299881936245572,
+        "precision": 0.13495872528316374
+      }
+    },
+    "3_dia": {
+      "horas_con_lluvia": 1694,
+      "horas": 34558,
+      "aprendido": {
+        "error": 0.03961707223361993,
+        "acierto": 1239,
+        "seEscapa": 455,
+        "falsa": 5581,
+        "deteccion": 0.731404958677686,
+        "precision": 0.1816715542521994
+      },
+      "promedio": {
+        "error": 0.12492042363562482,
+        "acierto": 1206,
+        "seEscapa": 488,
+        "falsa": 5250,
+        "deteccion": 0.7119244391971665,
+        "precision": 0.18680297397769516
+      },
+      "europeo": {
+        "error": 0.2695757856357428,
+        "acierto": 1337,
+        "seEscapa": 357,
+        "falsa": 8959,
+        "deteccion": 0.7892561983471075,
+        "precision": 0.12985625485625485
+      }
+    }
+  },
+  "umbral_prueba": 0.05,
+  "tabla_umbrales_2026": [
+    {
+      "umbral": 0.05,
+      "deteccion": 0.7774498229043684,
+      "precision": 0.18903401751112386,
+      "horas_por_dia": 4.838474448752821
+    },
+    {
+      "umbral": 0.1,
+      "deteccion": 0.6511216056670602,
+      "precision": 0.24604059781396387,
+      "horas_por_dia": 3.113374616586608
+    },
+    {
+      "umbral": 0.15,
+      "deteccion": 0.5425029515938606,
+      "precision": 0.31504970860473086,
+      "horas_por_dia": 2.025811678916604
+    },
+    {
+      "umbral": 0.2,
+      "deteccion": 0.46989374262101535,
+      "precision": 0.3495827843653931,
+      "horas_por_dia": 1.581341512819029
+    },
+    {
+      "umbral": 0.25,
+      "deteccion": 0.4025974025974026,
+      "precision": 0.3765875207067918,
+      "horas_por_dia": 1.257711673129232
+    },
+    {
+      "umbral": 0.3,
+      "deteccion": 0.3364817001180638,
+      "precision": 0.41364296081277213,
+      "horas_por_dia": 0.9569998263788413
+    },
+    {
+      "umbral": 0.4,
+      "deteccion": 0.19421487603305784,
+      "precision": 0.49473684210526314,
+      "horas_por_dia": 0.4618322819607616
+    },
+    {
+      "umbral": 0.5,
+      "deteccion": 0.06139315230224321,
+      "precision": 0.5942857142857143,
+      "horas_por_dia": 0.12153481104230568
+    }
+  ]
+}

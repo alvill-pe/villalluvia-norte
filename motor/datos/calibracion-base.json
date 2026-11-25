@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "actualizado": "2026-11-25T14:34:28.669Z",
+  "rasgos": [
+    "constante",
+    "ecmwf",
+    "gfs",
+    "icon",
+    "modelos_con_lluvia",
+    "seno_hora",
+    "coseno_hora",
+    "altura_km",
+    "dias_adelanto"
+  ],
+  "pesos": [
+    -4.63045,
+    0.60503,
+    0.28399,
+    0.28861,
+    2.52489,
+    0.32554,
+    0.26159,
+    0.2087,
+    0.02333
+  ],
+  "zonas": {},
+  "umbral_aviso": 0.05,
+  "meta_deteccion": 0.75,
+  "umbral_notificacion": 0.1,
+  "umbral_madrugada": 0.25,
+  "origen": "Aeropuertos SPUR, SPME, SPYL, SPHI, SPJE, SPJR, SPPY, 2024-01-01 a 2026-11-23"
+}
