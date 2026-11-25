@@ -17,6 +17,12 @@ const SIMULAR = process.argv.includes("--simular");
 const HORAS_ENTRE_AVISOS = 3;
 const URL_APP = process.env.URL_APP || "./";
 
+// En GitHub, sin las claves configuradas todavía, no hay nada que hacer (y no es un error).
+if (!SIMULAR && (!process.env.SUPABASE_URL || !process.env.VAPID_PRIVADA)) {
+  console.log("Faltan las claves de Supabase o de notificaciones (ver INSTRUCCIONES.md). Nada que enviar por ahora.");
+  process.exit(0);
+}
+
 let webpush = null;
 if (!SIMULAR) {
   webpush = (await import("web-push")).default;

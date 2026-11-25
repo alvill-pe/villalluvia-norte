@@ -13,6 +13,11 @@ import { AEROPUERTOS, observaciones, pronosticosPasados } from "./fuentes.mjs";
 import { ajustar, predecir, umbralPorDeteccion, evaluar } from "./aprendizaje.mjs";
 import { db } from "./db.mjs";
 
+if (process.env.GITHUB_ACTIONS && !process.env.SUPABASE_URL) {
+  console.log("Falta configurar Supabase (ver INSTRUCCIONES.md). Hoy no hay nada que aprender.");
+  process.exit(0);
+}
+
 const DIAS = [1, 2, 3];
 const PESO_FAMILIA = 2; // un reporte de la familia vale por dos horas de aeropuerto: es de su propio lugar
 const L2_BASE = 100;    // cuánto "se resiste" a cambiar lo aprendido antes
