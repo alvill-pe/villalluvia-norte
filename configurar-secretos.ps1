@@ -2,6 +2,12 @@
 # Uso: abrir PowerShell en esta carpeta y ejecutar:  .\configurar-secretos.ps1
 $repo = "alvill-pe/villalluvia-norte"
 
+gh auth status *> $null
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Primero inicia sesion en GitHub (se abrira el navegador)." -ForegroundColor Yellow
+    gh auth login -h github.com -p https -w
+}
+
 $vapid = Get-Content "motor/.local/vapid.secreto.json" | ConvertFrom-Json
 $vapid.privateKey | gh secret set VAPID_PRIVADA --repo $repo
 $vapid.publicKey  | gh secret set VAPID_PUBLICA --repo $repo
