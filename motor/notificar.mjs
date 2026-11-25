@@ -1,6 +1,6 @@
 // Corre cada 10 minutos en GitHub Actions.
 // - Avisa 1 hora antes de que llueva en el lugar de cada persona.
-// - Suena desde 10 % de probabilidad; de madrugada (10 p. m. a 6 a. m.) desde 25 %.
+// - Suena solo cuando la lluvia es probable (50 % o más), también de madrugada.
 // - A las 6 a. m. envía el resumen del día.
 // - Si el SENAMHI emite un aviso de lluvias para el norte, lo reenvía (si GitHub logra leerlo).
 //

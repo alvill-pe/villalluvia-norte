@@ -118,7 +118,7 @@ if (filas.length >= 50) {
   const probs = filas.map((f) => predecir(w, f.x));
   const ys = filas.map((f) => f.y);
   const positivos = ys.reduce((a, b) => a + b, 0);
-  const umbral = positivos >= 300 ? umbralPorDeteccion(probs, ys, base.meta_deteccion) : base.umbral_aviso;
+  const umbral = base.umbral_aviso; // fijo: solo lluvia probable (decisión del usuario)
   nueva = {
     ...base,
     version: (actual.version ?? 1) + 1,

@@ -14,7 +14,10 @@ import { ajustar, predecir, evaluar, umbralPorDeteccion } from "./aprendizaje.mj
 const DESDE = "2024-01-01";
 const HASTA = process.env.HASTA || new Date(Date.now() - 2 * 86400000).toISOString().slice(0, 10);
 const DIAS = [1, 2, 3];
-const META_DETECCION = 0.75; // avisar en 3 de cada 4 lluvias como mínimo, aunque haya falsas alarmas
+const META_DETECCION = 0.75; // solo para el informe de comparación
+// Decisión del usuario (2026-11-25): mostrar y avisar lluvia solo cuando sea probable (50 % o más).
+// Prueba 2026: cuando la app marcó lluvia en un día, llovió 71 de cada 100 veces.
+const UMBRAL_CERTEZA = 0.5;
 const CACHE = new URL("./.cache/", import.meta.url);
 
 async function conCache(nombre, fn) {
@@ -92,7 +95,7 @@ informe.umbral_prueba = umbralPrueba;
 
 // ---- Modelo final: aprende con todo ----
 const pesos = ajustar(filas, nR, l2);
-const umbral = umbralPorDeteccion(filas.map((f) => predecir(pesos, f.x)), filas.map((f) => f.y), META_DETECCION);
+const umbral = UMBRAL_CERTEZA;
 const calib = {
   version: 1,
   actualizado: new Date().toISOString(),
@@ -101,8 +104,8 @@ const calib = {
   zonas: {},
   umbral_aviso: umbral,
   meta_deteccion: META_DETECCION,
-  umbral_notificacion: 0.1, // el celular suena desde 10 % (detecta ~65 % de las horas con lluvia en 2026)
-  umbral_madrugada: 0.25,   // de 10 p. m. a 6 a. m. solo si es más probable
+  umbral_notificacion: UMBRAL_CERTEZA, // el celular suena solo si la lluvia es probable
+  umbral_madrugada: UMBRAL_CERTEZA,
   origen: `Aeropuertos ${Object.keys(AEROPUERTOS).join(", ")}, ${DESDE} a ${HASTA}`,
 };
 await mkdir(new URL("../app/datos/", import.meta.url), { recursive: true });

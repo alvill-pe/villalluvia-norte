@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizado": "2026-11-25T14:34:28.669Z",
+  "actualizado": "2026-11-25T15:21:58.104Z",
   "rasgos": [
     "constante",
     "ecmwf",
@@ -24,9 +24,9 @@
     0.02333
   ],
   "zonas": {},
-  "umbral_aviso": 0.05,
+  "umbral_aviso": 0.5,
   "meta_deteccion": 0.75,
-  "umbral_notificacion": 0.1,
-  "umbral_madrugada": 0.25,
+  "umbral_notificacion": 0.5,
+  "umbral_madrugada": 0.5,
   "origen": "Aeropuertos SPUR, SPME, SPYL, SPHI, SPJE, SPJR, SPPY, 2024-01-01 a 2026-11-23"
 }
